@@ -1,0 +1,92 @@
+version: "3.8"
+
+services:
+  mssql-server:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: mssql-server
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: "p4ssw0rD"
+    ports:
+      - "2433:1433"
+    volumes:
+      - "mssql-data:/var/opt/mssql"
+
+  adminer:
+    image: "adminer:4.8.1"
+    container_name: adminer
+    restart: always
+    ports:
+      - "2431:8080"
+    environment:
+      TZ: Europe/Rome
+      ADMINER_DEFAULT_SERVER: mssql-server
+    depends_on:
+      - mssql-server
+
+  zookeeper:
+    container_name: zookeeper
+    image: "bitnami/zookeeper:3.9.0"
+    restart: always
+    ports:
+      - "2181:2181"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    container_name: kafka
+    image: "bitnami/kafka:3.1.0"
+    restart: always
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+    depends_on:
+      - zookeeper
+
+  guidici:
+    image: guidici:latest
+    container_name: guidici
+    restart: always
+    depends_on:
+      - mssql-server
+      - kafka
+    environment:
+      TZ: Europe/Rome
+    volumes:
+      - "./config/guidici-appsettings.json:/app/appsettings.json:ro"
+
+  registrazione:
+    image: registrazione:latest
+    container_name: registrazione
+    restart: always
+    depends_on:
+      - mssql-server
+      - kafka
+    environment:
+      TZ: Europe/Rome
+    volumes:
+      - "./config/registrazione-appsettings.json:/app/appsettings.json:ro"
+  
+  proprietario:
+    image: proprietario:latest
+    container_name: proprietario
+    restart: always
+    depends_on:
+      - mssql-server
+      - kafka
+    environment:
+      TZ: Europe/Rome
+    volumes:
+      - "./config/proprietario-appsettings.json:/app/appsettings.json:ro"
+
+
+volumes:
+  mssql-data:

@@ -1,0 +1,44 @@
+*.json
+*.txt
+*.config
+*.vsidx
+*.v2
+MICRO - Copia (2)/microservizi/.vs/microservizi/v17/.wsuo
+*.sqlite
+/MICRO - Copia (2)/microservizi/guidici/.vs/guidici/v17
+/MICRO - Copia (2)/microservizi/guidici/Guidici/.vs
+*.bin
+*.dll
+*.cache
+*.editorconfig
+*.pdb
+*.md
+*.nuspec
+MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.Api/bin/Debug/net8.0/runtimes/linux-arm64/native/librdkafka.so
+*.so
+*.dylib
+*.user
+*.http
+MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.Api/obj/Debug/net8.0/apphost.exe
+/MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.Api/obj
+/MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.Business/obj
+/MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.ClientHttp/obj
+/MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.Repository/obj
+/MICRO - Copia (2)/microservizi/guidici/Guidici/Guidici.Shared/obj
+/MICRO - Copia (2)/microservizi/guidici/Guidici/Utility.Kafka/obj
+MICRO - Copia (2)/microservizi/Proprietario/.vs/Proprietario/v17/.suo
+/MICRO - Copia (2)/microservizi/Proprietario/Proprietario.Api/obj
+/MICRO - Copia (2)/microservizi/Proprietario/Proprietario.Business/obj
+/MICRO - Copia (2)/microservizi/Proprietario/Proprietario.ClientHttp/obj
+/MICRO - Copia (2)/microservizi/Proprietario/Proprietario.Repository/obj
+/MICRO - Copia (2)/microservizi/Proprietario/Proprietario.Shared/obj
+/MICRO - Copia (2)/microservizi/Registrazione/.vs
+/MICRO - Copia (2)/microservizi/Registrazione/Registrazione.Api/obj
+*.nupkg
+/MICRO - Copia (2)/microservizi/Registrazione/Registrazioni.ClientHttp/obj
+/MICRO - Copia (2)/microservizi/Registrazione/Registrazioni.Repository/obj
+/MICRO - Copia (2)/microservizi/Registrazione/Registrazioni.Shared/obj
+/MICRO - Copia (2)/microservizi/Registrazione/Utility.Kafka/obj
+/MICRO - Copia (2)/microservizi/Registrazione/Registrazioni.Business/obj
+/MICRO - Copia (2)/microservizi/Registrazione/obj
+/MICRO - Copia (2)/microservizi/obj

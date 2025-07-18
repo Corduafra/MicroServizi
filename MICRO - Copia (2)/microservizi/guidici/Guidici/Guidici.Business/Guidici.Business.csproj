@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Confluent.Kafka" Version="2.8.0" />
+		<PackageReference Include="MassTransit" Version="8.3.6" />
+		<PackageReference Include="System.Reactive" Version="6.0.1" />
+		
+	</ItemGroup>
+	
+	
+  <ItemGroup>
+    <ProjectReference Include="..\Guidici.Repository\Guidici.Repository.csproj" />
+    <ProjectReference Include="..\Guidici.Shared\Guidici.Shared.csproj" />
+  </ItemGroup>
+	
+	
+ 
+
+</Project>

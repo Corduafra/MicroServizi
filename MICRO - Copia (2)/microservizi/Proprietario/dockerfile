@@ -1,0 +1,39 @@
+# Fase di base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+
+# Fase di build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+
+# Copia i file di progetto prima di eseguire il restore
+COPY ["Proprietario.Api/Proprietario.Api.csproj", "Proprietario.Api/"]
+COPY ["Proprietario.Business/Proprietario.Business.csproj", "Proprietario.Business/"]
+COPY ["Proprietario.Repository/Proprietario.Repository.csproj", "Proprietario.Repository/"]
+COPY ["Proprietario.Shared/Proprietario.Shared.csproj", "Proprietario.Shared/"]
+
+# Esegui il restore solo per i progetti copiati
+RUN dotnet restore "Proprietario.Api/Proprietario.Api.csproj"
+
+# Copia il resto dei file dopo il restore
+COPY . . 
+
+# Compila il progetto
+WORKDIR "/src/Proprietario.Api"
+RUN dotnet build "Proprietario.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Fase di pubblicazione
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "Proprietario.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish
+
+# Fase finale per l'esecuzione
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+ENTRYPOINT ["dotnet", "Proprietario.Api.dll"]
