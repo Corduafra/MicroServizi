@@ -10,7 +10,7 @@ MICRO - Copia (2)/microservizi/.vs/microservizi/v17/.wsuo
 *.bin
 *.dll
 *.cache
-*.cs
+
 *.editorconfig
 *.pdb
 *.md
